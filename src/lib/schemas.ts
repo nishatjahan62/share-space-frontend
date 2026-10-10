@@ -21,3 +21,19 @@ export const registerSchema = z
 export type LoginInput = z.infer<typeof loginSchema>;
 export type RegisterInput = z.infer<typeof registerSchema>;
 export type RegisterPayload = Omit<RegisterInput, "confirmPassword">;
+
+
+export const contactSchema = z.object({
+  name: z.string().min(2, "Please enter your name"),
+  email: z.string().email("Enter a valid email address"),
+  subject: z
+    .string()
+    .min(3, "Subject must be at least 3 characters")
+    .max(120, "Subject is too long"),
+  message: z
+    .string()
+    .min(10, "Message must be at least 10 characters")
+    .max(2000, "Message is too long"),
+});
+
+export type ContactInput = z.infer<typeof contactSchema>;
