@@ -35,3 +35,26 @@ export interface User {
   isVerified: boolean;
   createdAt: string;
 }
+
+export type RoomStatus = "AVAILABLE" | "OCCUPIED" | "RESERVED";
+
+export interface Room {
+  id: string;
+  propertyId: string;
+  roomNumber: string;
+  rentAmount: number;
+  capacity: number;
+  currentOccupancy: number;
+  status: RoomStatus;
+}
+
+export interface Property {
+  id: string;
+  ownerId: string;
+  title: string;
+  address: string;
+  city: string;
+  description: string | null;
+  createdAt: string;
+  rooms: Room[];
+}

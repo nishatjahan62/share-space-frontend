@@ -21,3 +21,14 @@ export const DEMO_ACCOUNTS = [
   { role: "TENANT" as const, label: "User", email: "tenant1@sharespace.com", password: "password123" },
   { role: "OWNER" as const, label: "Provider", email: "owner@sharespace.com", password: "password123" },
 ];
+
+export const ROLE_LABEL: Record<Role, string> = { ADMIN: "Admin", OWNER: "Owner", TENANT: "Tenant" };
+
+export const ROLE_PROFILE: Record<Role, string> = {
+  ADMIN: "/admin",
+  OWNER: "/provider/profile",
+  TENANT: "/dashboard/profile",
+};
+
+
+export const CONTACT_EMAIL = "support@sharespace.com";

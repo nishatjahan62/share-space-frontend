@@ -1,5 +1,6 @@
 import "server-only";
 import { cache } from "react";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import type { NextResponse } from "next/server";
 import { apiFetch } from "@/lib/api";
@@ -24,8 +25,9 @@ export function clearSessionCookies(res: NextResponse) {
   res.cookies.delete(COOKIE_REFRESH);
 }
 
-// Verified by the backend; cached per request so layouts and pages share one call
 export const getSession = cache(async (): Promise<User | null> => {
+  const token = (await cookies()).get(COOKIE_ACCESS)?.value;
+  if (!token) return null;
   try {
     return await apiFetch<User>("/users/me");
   } catch {
@@ -33,7 +35,6 @@ export const getSession = cache(async (): Promise<User | null> => {
   }
 });
 
-// Use at the top of each role layout: redirects to /login, or to the user's own dashboard
 export async function requireRole(role: Role): Promise<User> {
   const user = await getSession();
   if (!user) redirect("/login");
