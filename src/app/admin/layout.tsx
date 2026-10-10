@@ -1,5 +1,9 @@
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
+import { DashboardShell } from "@/components/layout/dashboard-shell";
 
-export default function Layout({ children }: { children: ReactNode }) {
-  return <>{children}</>;
+export const metadata: Metadata = { robots: { index: false } };
+
+export default function AdminLayout({ children }: { children: ReactNode }) {
+  return <DashboardShell role="ADMIN">{children}</DashboardShell>;
 }
