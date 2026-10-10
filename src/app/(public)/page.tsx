@@ -1,4 +1,6 @@
+
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Suspense } from "react";
 import {
   ArrowRight,
@@ -19,7 +21,6 @@ import { PropertyCard } from "@/components/property/property-card";
 import { PropertyGridSkeleton } from "@/components/property/property-grid-skeleton";
 import { EmptyState } from "@/components/shared/empty-state";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -106,14 +107,12 @@ async function FeaturedListings() {
         title="No listings yet"
         description="New properties appear here as soon as owners publish them."
         action={
-          <Button
-            type="button"
-            onClick={() => {
-              window.location.href = "/register";
-            }}
+          <Link
+            href="/register"
+            className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
             List your property
-          </Button>
+          </Link>
         }
       />
     );
@@ -158,7 +157,12 @@ export default function HomePage() {
                 placeholder="Search by city, area or property name"
                 aria-label="Search properties"
               />
-              <Button type="submit">Search</Button>
+              <button
+                type="submit"
+                className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+              >
+                Search
+              </button>
             </form>
 
             <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
@@ -255,15 +259,13 @@ export default function HomePage() {
               </p>
             </div>
 
-            <Button
-              type="button"
-              variant="ghost"
-              onClick={() => {
-                window.location.href = "/properties";
-              }}
+            <Link
+              href="/properties"
+              className="inline-flex h-10 items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
             >
-              View all <ArrowRight />
-            </Button>
+              View all
+              <ArrowRight className="size-4" />
+            </Link>
           </div>
 
           <Suspense fallback={<PropertyGridSkeleton />}>
@@ -277,7 +279,9 @@ export default function HomePage() {
           <Card className="bg-primary text-primary-foreground">
             <CardContent className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
               <div className="space-y-1">
-                <h2 className="text-2xl font-bold">Ready to get started?</h2>
+                <h2 className="text-2xl font-bold">
+                  Ready to get started?
+                </h2>
                 <p className="text-primary-foreground/80">
                   Create a free account as a tenant or list your property as
                   an owner.
@@ -285,26 +289,19 @@ export default function HomePage() {
               </div>
 
               <div className="flex flex-wrap gap-3">
-                <Button
-                  type="button"
-                  variant="secondary"
-                  onClick={() => {
-                    window.location.href = "/register";
-                  }}
+                <Link
+                  href="/register"
+                  className="inline-flex h-10 items-center justify-center rounded-md bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground transition-colors hover:bg-secondary/80"
                 >
                   Create account
-                </Button>
+                </Link>
 
-                <Button
-                  type="button"
-                  variant="outline"
-                  className="border-primary-foreground/40 bg-transparent hover:bg-primary-foreground/10 hover:text-primary-foreground"
-                  onClick={() => {
-                    window.location.href = "/properties";
-                  }}
+                <Link
+                  href="/properties"
+                  className="inline-flex h-10 items-center justify-center rounded-md border border-primary-foreground/40 bg-transparent px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-foreground/10"
                 >
                   Browse rooms
-                </Button>
+                </Link>
               </div>
             </CardContent>
           </Card>

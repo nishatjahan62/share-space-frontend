@@ -47,7 +47,7 @@ export function SiteFooter() {
         ))}
       </Container>
       <div className="border-t py-4 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} ShareSpace. All rights reserved.
+      ShareSpace. All rights reserved.
       </div>
     </footer>
   );
